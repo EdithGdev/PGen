@@ -19,3 +19,30 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+@media print {
+  header, footer {
+    display: none !important;
+  }
+
+  /* Specifically target and show page number */
+  @page {
+    margin: 0;
+    @bottom-right {
+      content: counter(page) " of " counter(pages);
+    }
+  }
+
+  .print-hide {
+    display: none !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    margin: 1cm;
+  }
+}
