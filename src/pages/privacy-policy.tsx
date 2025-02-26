@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
             
             <h2 className="text-xl font-semibold mt-6">1. Introduction</h2>
             <p>
-              This Privacy Policy explains how Paint Quote Generator ("we", "us", "our") collects, uses, 
+              This Privacy Policy explains how PaintQuoteGenerator.com ("we", "us", "our") collects, uses, 
               and protects your information when you use our quote generation service. By using our service, 
               you agree to the collection and use of information in accordance with this policy.
             </p>
@@ -41,7 +41,7 @@ export default function PrivacyPolicy() {
               <li>To save your preferences and settings (premium feature)</li>
               <li>To improve our quote calculation algorithms</li>
               <li>To communicate with you about your quotes</li>
-              <li>To process payments (future premium features)</li>
+              <li>To process payments (premium features)</li>
               <li>To provide customer support</li>
             </ul>
 
@@ -92,7 +92,7 @@ export default function PrivacyPolicy() {
             <h2 className="text-xl font-semibold mt-6">10. Contact Us</h2>
             <p>
               If you have any questions about this Privacy Policy, please contact us at:
-              [Your Contact Information]
+              Support@PaintQuoteGenerator.com
             </p>
 
             <div className="mt-8 pt-4 border-t">

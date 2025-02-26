@@ -22,27 +22,59 @@ body {
 
 
 @media print {
-  header, footer {
+  /* Hide header, footer and navigation elements */
+  header, footer, nav {
     display: none !important;
   }
-
-  /* Specifically target and show page number */
+  
+  /* Set page margins and enable page numbers */
   @page {
-    margin: 0;
+    margin: 0.5in 0.5in 0.75in 0.5in; /* top right bottom left */
+    size: auto;
+    
     @bottom-right {
-      content: counter(page) " of " counter(pages);
+      content: "Page " counter(page) " of " counter(pages);
     }
   }
-
-  .print-hide {
+  
+   /* Hide specific elements during print */
+   header, footer, nav, .privacy-footer, .date-time-display {
     display: none !important;
   }
-
-  .no-print {
+  
+  /* Add more specific selectors for your footer */
+  .mt-8.text-center.text-sm.text-gray-500.pb-4 {
     display: none !important;
   }
-
+  
+  /* Hide elements with print-specific classes */
+  .print-hide, .no-print {
+    display: none !important;
+  }
+  
+  /* Show print-only elements */
+  .print-only {
+    display: block !important;
+  }
+  
+  /* Add space at bottom to prevent cut-off */
   body {
-    margin: 1cm;
+    margin: 0;
+    padding-bottom: 30px;
+    background-color: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
+  
+  /* Ensure page breaks don't occur inside elements */
+  p, h2, h3, img {
+    page-break-inside: avoid;
+  }
+  
+/* Force background colors and images to print */
+* {
+  -webkit-print-color-adjust: exact !important;
+  color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
 }

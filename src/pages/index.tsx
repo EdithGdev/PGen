@@ -30,6 +30,7 @@ interface Settings {
 
 // Define the FormData interface
 interface FormData {
+  estimateNumber?: string; 
   clientName: string;
   clientEmail: string;
   roomDetails: {
@@ -204,20 +205,43 @@ export default function QuoteGenerator() {
           {!showQuote ? (
             // Quote Form
             <form onSubmit={handleSubmit} className="space-y-6">
-              <h1 className="text-2xl text-gray-900 font-bold">Paint Job Quote Generator</h1>
+              <h1 className="text-2xl text-gray-900 font-bold">Professional Home Painting Quote Generator</h1>
+              <p className="text-gray-600 mb-4">Calculate accurate estimates for interior and exterior house painting projects, including materials and labor.</p>
 
               {/* Client Information */}
               <div className="space-y-4">
+              <div>
+  <label htmlFor="field-1-3-estimate-number" className="block text-sm mb-1 text-gray-900">
+    Estimate Number <span className="text-gray-500 text-xs">(Optional)</span>
+  </label>
+  <input
+    id="field-1-3-estimate-number"
+    type="text"
+    placeholder="Enter reference number for your records"
+    className="text-gray-900 w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
+    value={formData.estimateNumber || ''}
+    onChange={(e) => setFormData({...formData, estimateNumber: e.target.value})}
+  />
+  <p className="text-xs text-gray-500 mt-1">Add your own reference number for tracking purposes</p>
+</div>
                 <h2 className="font-semibold text-gray-900">Client Information</h2>
-                <input
-                  type="text"
-                  placeholder="Client Name *"
-                  className={`text-gray-900 w-full p-2 border rounded ${errors.clientName ? 'border-red-500' : ''}`}
-                  value={formData.clientName}
-                  onChange={(e) => setFormData({...formData, clientName: e.target.value})}
-                />
-                {errors.clientName && <p className="text-red-500 text-sm">{errors.clientName}</p>}
-
+                <div>
+  <label htmlFor="client-name" className="block text-sm mb-1 text-gray-900">
+    Client Name <span aria-hidden="true" className="text-red-500">*</span>
+  </label>
+  <input
+    id="client-name"
+    type="text"
+    required
+    aria-required="true"
+    aria-invalid={!!errors.clientName}
+    aria-describedby={errors.clientName ? "client-name-error" : undefined}
+    className={`text-gray-900 w-full p-2 border rounded ${errors.clientName ? 'border-red-500' : ''}`}
+    value={formData.clientName}
+    onChange={(e) => setFormData({...formData, clientName: e.target.value})}
+  />
+  {errors.clientName && <p id="client-name-error" className="text-red-500 text-sm" role="alert">{errors.clientName}</p>}
+</div>
                 <input
                   type="email"
                   placeholder="Client Email *"
@@ -345,6 +369,12 @@ export default function QuoteGenerator() {
           ) : (
             // Quote Display
             <div className="space-y-6">
+              {formData.estimateNumber && (
+      <div className="text-right">
+        <p className="text-sm text-gray-500">Estimate #</p>
+        <p className="text-gray-900 font-semibold">{formData.estimateNumber}</p>
+      </div>
+    )}
               <h2 className="text-gray-900 text-2xl font-bold">Quote Summary</h2>
               
               <div className="border-b pb-4">
